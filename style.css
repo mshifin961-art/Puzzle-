@@ -1,5 +1,10 @@
 body {
-  background-color: #0a0f16;
+  /* പുതിയ സിനിമാറ്റിക് ബാക്ക്ഗ്രൗണ്ട് */
+  background-image: url('https://images.unsplash.com/photo-1614729939124-03290b04092b?q=80&w=1920&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  background-color: #11151c; /* ഡാർക്ക് എഫക്ട് കിട്ടാൻ */
   color: white;
   font-family: 'Courier New', Courier, monospace;
   display: flex;
@@ -7,32 +12,43 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  overflow: hidden;
 }
+
 .container {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(0, 243, 255, 0.3);
+  /* ഗ്ലാസ് പോലെയുള്ള എഫക്ട് (Glassmorphism) */
+  background: rgba(10, 15, 22, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 243, 255, 0.2);
   padding: 40px;
   border-radius: 16px;
-  box-shadow: 0 0 40px rgba(0,243,255,0.1);
+  box-shadow: 0 0 40px rgba(0,243,255,0.15);
   text-align: center;
 }
+
 .title {
   color: #00f3ff;
-  text-shadow: 0 0 10px #00f3ff;
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
   letter-spacing: 5px;
   margin-bottom: 5px;
+  font-weight: bold;
 }
+
 .subtitle {
   color: #aaa;
   font-size: 14px;
   letter-spacing: 2px;
   margin-bottom: 30px;
 }
+
 #moves {
   color: white;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -40,57 +56,58 @@ body {
   margin: 30px auto;
   justify-content: center;
 }
+
 .tile {
   width: 100px;
   height: 100px;
   background-color: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 8px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.3s;
 }
+
 .tile:hover {
   transform: scale(1.05);
+  background-color: rgba(255,255,255,0.08);
 }
+
 .tile:active {
   transform: scale(0.95);
 }
+
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   margin-bottom: 10px;
 }
+
 .state-text {
   font-size: 12px;
   letter-spacing: 2px;
+  font-weight: bold;
 }
 
 /* Time States */
-.PRESENT .dot { background-color: #00f3ff; box-shadow: 0 0 10px #00f3ff; }
+.PRESENT .dot { background-color: #00f3ff; box-shadow: 0 0 15px #00f3ff; }
 .PRESENT .state-text { color: #00f3ff; }
-.PRESENT { box-shadow: 0 0 15px rgba(0,243,255,0.2); }
+.PRESENT { box-shadow: inset 0 0 20px rgba(0,243,255,0.1); }
 
-.FUTURE .dot { background-color: #b535f6; box-shadow: 0 0 10px #b535f6; }
+.FUTURE .dot { background-color: #b535f6; box-shadow: 0 0 15px #b535f6; }
 .FUTURE .state-text { color: #b535f6; }
-.FUTURE { box-shadow: 0 0 15px rgba(181,53,246,0.2); }
+.FUTURE { box-shadow: inset 0 0 20px rgba(181,53,246,0.1); }
 
-.PAST .dot { background-color: #ff7b00; box-shadow: 0 0 10px #ff7b00; }
+.PAST .dot { background-color: #ff7b00; box-shadow: 0 0 15px #ff7b00; }
 .PAST .state-text { color: #ff7b00; }
-.PAST { box-shadow: 0 0 15px rgba(255,123,0,0.2); }
+.PAST { box-shadow: inset 0 0 20px rgba(255,123,0,0.1); }
 
-.footer-text {
-  margin-top: 30px;
-  font-size: 12px;
-  color: #666;
-  letter-spacing: 3px;
-}
 .reset-btn {
-  background: transparent;
+  background: rgba(0, 243, 255, 0.1);
   color: #00f3ff;
   border: 1px solid #00f3ff;
   padding: 10px 20px;
@@ -103,8 +120,17 @@ body {
   transition: all 0.3s;
   box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
 }
+
 .reset-btn:hover {
   background: #00f3ff;
   color: #0a0f16;
-  box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
-                                    }
+  box-shadow: 0 0 25px rgba(0, 243, 255, 0.8);
+  font-weight: bold;
+}
+
+.footer-text {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 3px;
+  }
