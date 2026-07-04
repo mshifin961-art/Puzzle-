@@ -1,18 +1,16 @@
 body {
-  /* പുതിയ സിനിമാറ്റിക് ബാക്ക്ഗ്രൗണ്ട് */
   background-image: url('https://images.unsplash.com/photo-1614729939124-03290b04092b?q=80&w=1920&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
-  background-blend-mode: multiply;
-  background-color: #11151c; /* ഡാർക്ക് എഫക്ട് കിട്ടാൻ */
+  background-attachment: fixed;
+  background-color: #11151c; 
   color: white;
   font-family: 'Courier New', Courier, monospace;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
-  overflow: hidden;
 }
 
 .container {
