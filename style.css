@@ -89,3 +89,22 @@ body {
   color: #666;
   letter-spacing: 3px;
 }
+.reset-btn {
+  background: transparent;
+  color: #00f3ff;
+  border: 1px solid #00f3ff;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 3px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+.reset-btn:hover {
+  background: #00f3ff;
+  color: #0a0f16;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+                                    }
