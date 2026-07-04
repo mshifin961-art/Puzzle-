@@ -62,3 +62,8 @@ function checkWin() {
 }
 
 renderGrid();
+function resetGame() {
+  grid = Array(9).fill(0).map(() => states[Math.floor(Math.random() * states.length)]);
+  moves = 0;
+  renderGrid();
+               }
