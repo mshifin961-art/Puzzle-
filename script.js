@@ -1,9 +1,12 @@
 const gridElement = document.getElementById('grid');
 const movesElement = document.getElementById('moves');
 
-const states = ['PRESENT', 'FUTURE', 'PAST'];
+// സൗണ്ട് എഫക്റ്റുകൾ (ഓൺലൈൻ ലിങ്കുകൾ ഉപയോഗിക്കുന്നു)
+const clickSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
+const winSound = new Audio('https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3');
+clickSound.volume = 0.5; // ക്ലിക്ക് സൗണ്ട് കുറച്ചു വെക്കാൻ
 
-// ഗെയിം തുടങ്ങുമ്പോൾ തന്നെ ടൈലുകൾ പല സമയങ്ങളിൽ (Random) ആക്കി വെക്കാൻ
+const states = ['PRESENT', 'FUTURE', 'PAST'];
 let grid = Array(9).fill(0).map(() => states[Math.floor(Math.random() * states.length)]);
 let moves = 0;
 
@@ -29,15 +32,17 @@ function renderGrid() {
 }
 
 function handleTileClick(index) {
-  // ടൈം റിപ്പിൾ ലോജിക്: ക്ലിക്ക് ചെയ്ത ടൈലും ചുറ്റുമുള്ളവയും കണ്ടുപിടിക്കാൻ
+  // ക്ലിക്ക് ചെയ്യുമ്പോൾ സൗണ്ട് പ്ലേ ചെയ്യാൻ
+  clickSound.currentTime = 0; 
+  clickSound.play();
+
   const affectedIndices = [index];
 
-  if (index - 3 >= 0) affectedIndices.push(index - 3); // മുകളിലുള്ള ടൈൽ
-  if (index + 3 < 9) affectedIndices.push(index + 3); // താഴെയുള്ള ടൈൽ
-  if (index % 3 !== 0) affectedIndices.push(index - 1); // ഇടതുവശത്തെ ടൈൽ
-  if (index % 3 !== 2) affectedIndices.push(index + 1); // വലതുവശത്തെ ടൈൽ
+  if (index - 3 >= 0) affectedIndices.push(index - 3); 
+  if (index + 3 < 9) affectedIndices.push(index + 3); 
+  if (index % 3 !== 0) affectedIndices.push(index - 1); 
+  if (index % 3 !== 2) affectedIndices.push(index + 1); 
 
-  // ഈ കണ്ടുപിടിച്ച എല്ലാ ടൈലുകളുടെയും സമയം മാറ്റാൻ
   affectedIndices.forEach(i => {
     let currentState = grid[i];
     let nextStateIndex = (states.indexOf(currentState) + 1) % states.length;
@@ -50,20 +55,23 @@ function handleTileClick(index) {
 }
 
 function checkWin() {
-  // എല്ലാ ടൈലുകളും ഒരേ സമയത്ത് (ഒരേ നിറത്തിൽ) എത്തിയോ എന്ന് ചെക്ക് ചെയ്യാൻ
   const firstState = grid[0];
   const isWin = grid.every(state => state === firstState);
   
   if (isWin) {
+    // ജയിക്കുമ്പോൾ ഉള്ള സൗണ്ട് 
+    winSound.play();
+    
     setTimeout(() => {
-      alert(`congruatulations! You stabilized the Time Rift in ${moves} moves! 🚀`);
-    }, 300);
+      alert(`പൊളിച്ചു! You stabilized the Time Rift in ${moves} moves! 🚀`);
+    }, 500);
   }
 }
 
-renderGrid();
 function resetGame() {
   grid = Array(9).fill(0).map(() => states[Math.floor(Math.random() * states.length)]);
   moves = 0;
   renderGrid();
-               }
+}
+
+renderGrid();
